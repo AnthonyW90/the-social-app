@@ -1,0 +1,42 @@
+<div class="flow-root">
+  <ul role="list" class="-mb-8 divide-y divide-solid">
+    {% for post in posts %}
+    <li class="pt-8 first:pt-0">
+      <div class="relative pb-8">
+        <div class="relative flex items-start space-x-3">
+          <div class="relative rounded-full bg-white">
+            <!-- <UserCircleIcon
+              class="flex h-10 w-10 items-center justify-center rounded-full"
+            /> -->
+          </div>
+          <div class="min-w-0 flex-1">
+            <div>
+              <div class="flex justify-between items-center">
+                <a
+                  href="{% url 'users:profile' post.author.username %}"
+                  class="font-medium text-white"
+                >
+                  {{ post.author.username }}
+                </a>
+                {% if post.author == request.user %}
+                <a
+                  class="text-sm text-red-500"
+                  href="{% url 'posts:delete_post' post.id %}"
+                  >DELETE</a
+                >
+                {% endif %}
+              </div>
+              <p class="mt-0.5 text-xs text-gray-500">
+                Commented {{ post.created_at|timesince }} ago
+              </p>
+            </div>
+            <div class="mt-2 text-sm text-gray-200">
+              <p>{{post.body}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

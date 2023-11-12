@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+<!--  -->
+{% block title %} {{ user.username|title }}'s Profile {%endblock title %}
+<!--  -->
+{% block content %}
+<!--  -->
+<div class="flex min-h-full flex-col">
+  {% include 'users/_navbar.html' %}
+  <!-- {/* 3 column wrapper */} -->
+  <div class="w-full grow lg:flex">
+    <div
+      class="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-72 lg:border-r lg:border-t-0 lg:pr-8"
+    >
+      <!-- {/* Left column area */} -->
+      {% include 'users/_userCard.html' %}
+    </div>
+
+    <!-- {/* Top & main wrapper */} -->
+    <div class="flex-1">
+      <div
+        class="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6"
+      >
+        {% if is_owner %} {% include 'users/_createPost.html' %} {% endif %}
+        <!-- <CreatePost currentUser="{user}" /> -->
+      </div>
+
+      <div class="px-4 py-6 sm:px-6 lg:pl-8">
+        {% include 'users/_feed.html' %}
+      </div>
+    </div>
+
+    <div
+      class="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-72 lg:border-l lg:border-t-0 lg:pr-8"
+    >
+      <!-- {/* Right column area */} -->
+      {% include 'users/_friendSuggestions.html' %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

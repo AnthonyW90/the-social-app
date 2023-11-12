@@ -1,0 +1,78 @@
+<div class="lg:col-start-3 lg:row-end-1">
+  <h2 class="sr-only">User Info</h2>
+  <div class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
+    <dl class="flex flex-wrap pb-4">
+      <div class="flex-auto pl-6 pt-6">
+        <div class="flex items-center gap-4">
+          {% include 'icons/_userCircleIcon.html' %}
+          <dd class="mt-1 text-base font-semibold leading-6 text-gray-900">
+            {{user.get_full_name}}
+          </dd>
+        </div>
+      </div>
+      <!-- Date joined -->
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+        <dt class="flex-none">
+          <span class="sr-only">Joined</span>
+          {% include 'icons/_calendarIcon.html' %}
+        </dt>
+        <dd class="text-sm leading-6 text-gray-500">
+          {{ user.date_joined|date:"d M Y" }}
+        </dd>
+      </div>
+      <!-- # of friends -->
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+        <dt class="flex-none">
+          <span class="sr-only">Number of Friends</span>
+          {% include 'icons/_userGroupIcon.html' %}
+        </dt>
+        <dd class="text-sm leading-6 text-gray-500">
+          {{ user.get_friend_count }}
+        </dd>
+      </div>
+      <!-- # of posts -->
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+        <dt class="flex-none">
+          <span class="sr-only">Number of Posts</span>
+          {% include 'icons/_chatBubbleTextIcon.html' %}
+        </dt>
+        <dd class="text-sm leading-6 text-gray-500">{{ user.postCount}}</dd>
+      </div>
+      <!-- # of comments -->
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+        <dt class="flex-none">
+          <span class="sr-only">Number of Comments</span>
+          {% include 'icons/_chatBubbleLeftRightIcon.html' %}
+        </dt>
+        <dd class="text-sm leading-6 text-gray-500">{{ user.postCount}}</dd>
+      </div>
+      <!-- # of likes -->
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+        <dt class="flex-none">
+          <span class="sr-only">Number of Likes</span>
+          {% include 'icons/_handThumbsUpIcon.html' %}
+        </dt>
+        <dd class="text-sm leading-6 text-gray-500">{{ user.likeCount}}</dd>
+      </div>
+      <!-- # of profile views -->
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+        <dt class="flex-none">
+          <span class="sr-only">Number of Profile Views</span>
+          {% include 'icons/_eyeIcon.html' %}
+        </dt>
+        <dd class="text-sm leading-6 text-gray-500">
+          {{ user.profileViewCount }}
+        </dd>
+      </div>
+    </dl>
+    {% if request.user != user and user not in request.user.friends.all %}
+    <div class="flex justify-center">
+      <a
+        href="{% url 'users:add_friend' user.id %}"
+        class="hover:bg-blue-500 w-full mx-4 mb-4 justify-center text-gray-100 bg-blue-700 hover:text-white inline-flex items-center rounded-md py-2 px-3 text-sm font-medium"
+        >&plus; Add Friend</a
+      >
+    </div>
+    {% endif %}
+  </div>
+</div>
