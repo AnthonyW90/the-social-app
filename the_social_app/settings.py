@@ -49,10 +49,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "compressor",
     "users.apps.UsersConfig",
     "posts.apps.PostsConfig",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 MIDDLEWARE = [
