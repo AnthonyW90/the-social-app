@@ -31,7 +31,7 @@ def signup_page(request):
     user.save()
 
     login(request, user)
-    return render(request, "users/signup.html", {"messages": ["User created!"]})
+    return redirect("index")
 
 
 def login_page(request):
@@ -47,7 +47,7 @@ def login_page(request):
         return render(request, "users/login.html", {"error": "Invalid credentials"})
 
     login(request, user)
-    return render(request, "users/login.html", {"messages": ["Logged in!"]})
+    return redirect("index")
 
 
 def logout_page(request):

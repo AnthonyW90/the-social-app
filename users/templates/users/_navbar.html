@@ -1,17 +1,4 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
+{% load static %}
 <header class="bg-gray-800">
   <div
     class="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-700 lg:px-8"
@@ -21,8 +8,8 @@
         <div class="flex flex-shrink-0 items-center">
           <img
             class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-            alt="Your Company"
+            src="{% static 'images/Logo.png' %}"
+            alt="The Social App"
           />
         </div>
       </div>
@@ -113,6 +100,14 @@
       >
         Settings
       </button>
+      {% if request.user.is_authenticated %}
+      <a
+        href="{% url 'users:logout' %}"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white inline-flex items-center rounded-md py-2 px-3 text-sm font-medium"
+        aria-current="page"
+        >Logout</a
+      >
+      {% endif %}
     </nav>
   </div>
 </header>
